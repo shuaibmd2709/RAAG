@@ -4,12 +4,12 @@ from pydantic import BaseModel, Field
 class Dish(BaseModel):
     id: str
     name: str
-    category: str                      # e.g. "Starters", "Mains", "Desserts", "Drinks"
+    category: str
     description: str
     price_eur: float | None = None
-    dietary_tags: list[str] = Field(default_factory=list)   # vegetarian, vegan, gluten-free, halal ...
-    allergens: list[str] = Field(default_factory=list)      # gluten, dairy, nuts, egg, fish, shellfish, soy ...
-    allergens_stated: bool = False     # True only if the menu explicitly lists allergens for this dish
+    dietary_tags: list[str] = Field(default_factory=list)
+    allergens: list[str] = Field(default_factory=list)
+    allergens_stated: bool = False
 
     def to_text(self) -> str:
         """Text that gets embedded. Kept readable so semantic search works on natural questions."""

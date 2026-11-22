@@ -1,0 +1,163 @@
+{
+  "restaurant": "Trattoria Rosa",
+  "currency": "EUR",
+  "dishes": [
+    {
+      "id": "d001",
+      "name": "Bruschetta al Pomodoro",
+      "category": "Starters",
+      "description": "Grilled sourdough with tomatoes, basil and olive oil.",
+      "price_eur": 7.5,
+      "dietary_tags": [
+        "vegan"
+      ],
+      "allergens": [
+        "gluten"
+      ],
+      "allergens_stated": true
+    },
+    {
+      "id": "d002",
+      "name": "Burrata e Rucola",
+      "category": "Starters",
+      "description": "Creamy burrata with rocket and cherry tomatoes.",
+      "price_eur": 11.0,
+      "dietary_tags": [
+        "vegetarian",
+        "gluten-free"
+      ],
+      "allergens": [
+        "dairy"
+      ],
+      "allergens_stated": true
+    },
+    {
+      "id": "d003",
+      "name": "Spaghetti Carbonara",
+      "category": "Mains",
+      "description": "Spaghetti with egg yolk, pecorino, guanciale and black pepper.",
+      "price_eur": 14.5,
+      "dietary_tags": [],
+      "allergens": [
+        "gluten",
+        "egg",
+        "dairy"
+      ],
+      "allergens_stated": true
+    },
+    {
+      "id": "d004",
+      "name": "Risotto ai Funghi",
+      "category": "Mains",
+      "description": "Arborio rice with porcini mushrooms, white wine and parmesan.",
+      "price_eur": 15.0,
+      "dietary_tags": [
+        "vegetarian",
+        "gluten-free"
+      ],
+      "allergens": [
+        "dairy"
+      ],
+      "allergens_stated": true
+    },
+    {
+      "id": "d005",
+      "name": "Pizza Diavola",
+      "category": "Mains",
+      "description": "Tomato, mozzarella and spicy salami, with chilli oil.",
+      "price_eur": 13.5,
+      "dietary_tags": [],
+      "allergens": [
+        "gluten",
+        "dairy"
+      ],
+      "allergens_stated": true
+    },
+    {
+      "id": "d006",
+      "name": "Branzino al Forno",
+      "category": "Mains",
+      "description": "Oven-baked sea bass with lemon, capers and roast potatoes.",
+      "price_eur": 21.0,
+      "dietary_tags": [
+        "gluten-free"
+      ],
+      "allergens": [
+        "fish"
+      ],
+      "allergens_stated": true
+    },
+    {
+      "id": "d007",
+      "name": "Gnocchi al Pesto",
+      "category": "Mains",
+      "description": "Potato gnocchi in basil pesto with pine nuts.",
+      "price_eur": 13.0,
+      "dietary_tags": [
+        "vegetarian"
+      ],
+      "allergens": [
+        "gluten",
+        "nuts",
+        "dairy"
+      ],
+      "allergens_stated": true
+    },
+    {
+      "id": "d008",
+      "name": "Tiramisu",
+      "category": "Desserts",
+      "description": "Mascarpone cream, espresso-soaked savoiardi and cocoa.",
+      "price_eur": 6.5,
+      "dietary_tags": [
+        "vegetarian"
+      ],
+      "allergens": [
+        "gluten",
+        "egg",
+        "dairy"
+      ],
+      "allergens_stated": true
+    },
+    {
+      "id": "d009",
+      "name": "Panna Cotta",
+      "category": "Desserts",
+      "description": "Vanilla cream with a berry compote.",
+      "price_eur": 6.0,
+      "dietary_tags": [
+        "vegetarian",
+        "gluten-free"
+      ],
+      "allergens": [
+        "dairy"
+      ],
+      "allergens_stated": true
+    },
+    {
+      "id": "d010",
+      "name": "Sorbetto al Limone",
+      "category": "Desserts",
+      "description": "Lemon sorbet.",
+      "price_eur": 5.0,
+      "dietary_tags": [
+        "vegan",
+        "gluten-free"
+      ],
+      "allergens": [],
+      "allergens_stated": true
+    },
+    {
+      "id": "d011",
+      "name": "Espresso",
+      "category": "Drinks",
+      "description": "Single espresso.",
+      "price_eur": 2.5,
+      "dietary_tags": [
+        "vegan"
+      ],
+      "allergens": [],
+      "allergens_stated": false
+    }
+  ]
+}
