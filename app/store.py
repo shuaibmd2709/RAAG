@@ -56,3 +56,12 @@ def search(query: str, k: int = 4, where: dict | None = None, client=None) -> li
         {"dish": Dish.model_validate_json(md["dish_json"]), "distance": dist}
         for md, dist in zip(res["metadatas"][0], res["distances"][0])
     ]
+
+def vocab(client=None) -> dict:
+    client = client or _client()
+    col = client.get_collection(COLLECTION, embedding_function=None)
+    dishes = [Dish.model_validate_json(m["dish_json"]) for m in col.get(include=["metadatas"])["metadatas"]]
+    return {
+        "categories": sorted({d.category for d in dishes}),
+        "tags": sorted({t for d in dishes for t in d.dietary_tags}),
+    }
