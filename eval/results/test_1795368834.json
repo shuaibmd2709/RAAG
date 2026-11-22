@@ -1,0 +1,428 @@
+[
+  {
+    "id": "t01",
+    "type": "aggregate",
+    "question": "What is the most expensive main course?",
+    "rep": 0,
+    "system": {
+      "pass": true,
+      "fails": [],
+      "answer": "The most expensive main course is **Branzino al Forno** at **21.00 EUR** — oven-baked sea bass with lemon, capers and roast potatoes."
+    },
+    "baseline": {
+      "pass": false,
+      "fails": [
+        "missing 'Branzino'"
+      ],
+      "answer": "The most expensive main course is **Risotto ai Funghi** at **15.00 EUR**. It's an Arborio rice dish with porcini mushrooms, white wine and parmesan, and it's vegetarian and gluten-free."
+    }
+  },
+  {
+    "id": "t01",
+    "type": "aggregate",
+    "question": "What is the most expensive main course?",
+    "rep": 1,
+    "system": {
+      "pass": true,
+      "fails": [],
+      "answer": "The most expensive main course is **Branzino al Forno** at **21.00 EUR** — oven-baked sea bass with lemon, capers and roast potatoes."
+    },
+    "baseline": {
+      "pass": false,
+      "fails": [
+        "missing 'Branzino'"
+      ],
+      "answer": "The most expensive main course is **Risotto ai Funghi** at **15.00 EUR** — Arborio rice with porcini mushrooms, white wine and parmesan. It's vegetarian and gluten-free, though it does contain dairy."
+    }
+  },
+  {
+    "id": "t01",
+    "type": "aggregate",
+    "question": "What is the most expensive main course?",
+    "rep": 2,
+    "system": {
+      "pass": true,
+      "fails": [],
+      "answer": "The most expensive main course is **Branzino al Forno** at 21.00 EUR – oven-baked sea bass with lemon, capers and roast potatoes."
+    },
+    "baseline": {
+      "pass": false,
+      "fails": [
+        "missing 'Branzino'"
+      ],
+      "answer": "The most expensive main course is **Risotto ai Funghi** at **15.00 EUR** – Arborio rice with porcini mushrooms, white wine and parmesan. It's vegetarian and gluten-free, though it does contain dairy."
+    }
+  },
+  {
+    "id": "t02",
+    "type": "lookup",
+    "question": "How much is the tiramisu?",
+    "rep": 0,
+    "system": {
+      "pass": true,
+      "fails": [],
+      "answer": "The Tiramisu is **6.50 EUR**. It's a vegetarian dessert made with mascarpone cream, espresso-soaked savoiardi, and cocoa. It contains gluten, egg, and dairy."
+    },
+    "baseline": {
+      "pass": true,
+      "fails": [],
+      "answer": "The Tiramisu is **6.50 EUR**."
+    }
+  },
+  {
+    "id": "t02",
+    "type": "lookup",
+    "question": "How much is the tiramisu?",
+    "rep": 1,
+    "system": {
+      "pass": true,
+      "fails": [],
+      "answer": "The Tiramisu is **6.50 EUR**. It's a vegetarian dessert made with mascarpone cream, espresso-soaked savoiardi and cocoa. Please note it contains gluten, egg, and dairy."
+    },
+    "baseline": {
+      "pass": true,
+      "fails": [],
+      "answer": "The Tiramisu is **6.50 EUR**. It's vegetarian and contains gluten, egg, and dairy."
+    }
+  },
+  {
+    "id": "t02",
+    "type": "lookup",
+    "question": "How much is the tiramisu?",
+    "rep": 2,
+    "system": {
+      "pass": true,
+      "fails": [],
+      "answer": "The Tiramisu is **6.50 EUR**. It's a vegetarian dessert made with mascarpone cream, espresso-soaked savoiardi, and cocoa. It contains gluten, egg, and dairy."
+    },
+    "baseline": {
+      "pass": true,
+      "fails": [],
+      "answer": "The Tiramisu is **6.50 EUR**. It's a vegetarian dessert made with mascarpone cream, espresso-soaked savoiardi and cocoa. It contains gluten, egg, and dairy."
+    }
+  },
+  {
+    "id": "t03",
+    "type": "allergen",
+    "question": "I'm allergic to nuts, which mains are ok?",
+    "rep": 0,
+    "system": {
+      "pass": true,
+      "fails": [],
+      "answer": "Great news! All of our mains are listed without nuts:\n\n- **Pizza Diavola** - 13.50 EUR\n- **Spaghetti Carbonara** - 14.50 EUR\n- **Branzino al Forno** - 21.00 EUR\n- **Risotto ai Funghi** - 15.00 EUR\n\nHowever, please note their other allergens (gluten, dairy, egg, fish) before ordering.\n\nPlease always confirm allergies with our staff before ordering."
+    },
+    "baseline": {
+      "pass": false,
+      "fails": [
+        "missing 'Risotto'",
+        "missing 'Pizza'",
+        "missing 'Branzino'",
+        "missing 'staff'"
+      ],
+      "answer": "Great news! Our **Spaghetti Carbonara** (14.50 EUR) has no nuts listed in its allergens."
+    }
+  },
+  {
+    "id": "t03",
+    "type": "allergen",
+    "question": "I'm allergic to nuts, which mains are ok?",
+    "rep": 1,
+    "system": {
+      "pass": true,
+      "fails": [],
+      "answer": "Great news! All of our mains are listed without nuts:\n\n- **Pizza Diavola** - 13.50 EUR\n- **Spaghetti Carbonara** - 14.50 EUR\n- **Branzino al Forno** - 21.00 EUR\n- **Risotto ai Funghi** - 15.00 EUR\n\nHowever, please note their other allergens (gluten, dairy, egg, fish) before ordering.\n\nPlease always confirm allergies with our staff before ordering."
+    },
+    "baseline": {
+      "pass": false,
+      "fails": [
+        "missing 'Risotto'",
+        "missing 'Pizza'",
+        "missing 'Branzino'",
+        "missing 'staff'"
+      ],
+      "answer": "Great news! **Spaghetti Carbonara** is listed without nuts. It's 14.50 EUR."
+    }
+  },
+  {
+    "id": "t03",
+    "type": "allergen",
+    "question": "I'm allergic to nuts, which mains are ok?",
+    "rep": 2,
+    "system": {
+      "pass": true,
+      "fails": [],
+      "answer": "Great news! All of our mains are listed without nuts:\n\n- **Pizza Diavola** - 13.50 EUR\n- **Spaghetti Carbonara** - 14.50 EUR\n- **Branzino al Forno** - 21.00 EUR\n- **Risotto ai Funghi** - 15.00 EUR\n\nHowever, please note each has other allergens listed, so just double-check those work for you!\n\nPlease always confirm allergies with our staff before ordering."
+    },
+    "baseline": {
+      "pass": false,
+      "fails": [
+        "missing 'Risotto'",
+        "missing 'Pizza'",
+        "missing 'Branzino'",
+        "missing 'staff'"
+      ],
+      "answer": "Great news! Our **Spaghetti Carbonara** (14.50 EUR) has no nuts listed in its allergens. It does contain gluten, egg, and dairy though, so please check those work for you."
+    }
+  },
+  {
+    "id": "t04",
+    "type": "allergen",
+    "question": "I'm celiac, what should I order?",
+    "rep": 0,
+    "system": {
+      "pass": true,
+      "fails": [],
+      "answer": "Great news! All our dishes are gluten-free:\n\n**Starters:**\n- Burrata e Rucola - 11.00 EUR\n\n**Mains:**\n- Risotto ai Funghi - 15.00 EUR\n- Branzino al Forno - 21.00 EUR\n\n**Desserts:**\n- Panna Cotta - 6.00 EUR\n- Sorbetto al Limone - 5.00 EUR\n\nJust note the allergens listed for each dish when making your choice!\n\nI can't confirm gluten information for: Espresso. Please ask our staff about these.\n\nPlease always confirm allergies with our staff before ordering."
+    },
+    "baseline": {
+      "pass": false,
+      "fails": [
+        "missing 'Branzino'",
+        "missing 'staff'"
+      ],
+      "answer": "For celiac disease, I'd recommend the **Risotto ai Funghi** (Mains) - it's listed as gluten-free. It's Arborio rice with porcini mushrooms, white wine and parmesan, priced at 15.00 EUR. \n\nThe other dishes on this menu contain gluten."
+    }
+  },
+  {
+    "id": "t04",
+    "type": "allergen",
+    "question": "I'm celiac, what should I order?",
+    "rep": 1,
+    "system": {
+      "pass": true,
+      "fails": [],
+      "answer": "Great! All our dishes are gluten-free, so you have plenty of options:\n\n**Starters:**\n- Burrata e Rucola - 11.00 EUR (vegetarian, dairy allergen)\n\n**Mains:**\n- Risotto ai Funghi - 15.00 EUR (vegetarian, dairy allergen)\n- Branzino al Forno - 21.00 EUR (fish allergen)\n\n**Desserts:**\n- Panna Cotta - 6.00 EUR (vegetarian, dairy allergen)\n- Sorbetto al Limone - 5.00 EUR (vegan, no allergens listed)\n\nI can't confirm gluten information for: Espresso. Please ask our staff about these.\n\nPlease always confirm allergies with our staff before ordering."
+    },
+    "baseline": {
+      "pass": false,
+      "fails": [
+        "missing 'Branzino'",
+        "missing 'staff'"
+      ],
+      "answer": "For celiac disease, I'd recommend our **Risotto ai Funghi** (Mains) at 15.00 EUR. It's listed as gluten-free and is vegetarian. It contains arborio rice with porcini mushrooms, white wine and parmesan.\n\nThe other dishes on the menu contain gluten, so they wouldn't be suitable for you."
+    }
+  },
+  {
+    "id": "t04",
+    "type": "allergen",
+    "question": "I'm celiac, what should I order?",
+    "rep": 2,
+    "system": {
+      "pass": true,
+      "fails": [],
+      "answer": "Great! All our dishes are gluten-free, so you have plenty of options:\n\n**Starters:**\n- Burrata e Rucola - 11.00 EUR (vegetarian, dairy allergen)\n\n**Mains:**\n- Risotto ai Funghi - 15.00 EUR (vegetarian, dairy allergen)\n- Branzino al Forno - 21.00 EUR (fish allergen)\n\n**Desserts:**\n- Panna Cotta - 6.00 EUR (vegetarian, dairy allergen)\n- Sorbetto al Limone - 5.00 EUR (vegan, no allergens listed)\n\nI can't confirm gluten information for: Espresso. Please ask our staff about these.\n\nPlease always confirm allergies with our staff before ordering."
+    },
+    "baseline": {
+      "pass": false,
+      "fails": [
+        "missing 'Branzino'",
+        "missing 'staff'"
+      ],
+      "answer": "For celiac, I'd recommend:\n\n**Risotto ai Funghi** - 15.00 EUR. Arborio rice with porcini mushrooms, white wine and parmesan. Listed as gluten-free, vegetarian. Allergens: dairy.\n\nThe other dishes on the menu contain gluten."
+    }
+  },
+  {
+    "id": "t05",
+    "type": "unsupported",
+    "question": "Is the branzino kosher?",
+    "rep": 0,
+    "system": {
+      "pass": false,
+      "fails": [
+        "missing 'staff'"
+      ],
+      "answer": "The menu doesn't provide information about whether dishes are kosher. I'd recommend asking the restaurant directly about their kosher certification and preparation practices for the Branzino al Forno."
+    },
+    "baseline": {
+      "pass": false,
+      "fails": [
+        "missing 'staff'"
+      ],
+      "answer": "The menu doesn't list kosher certification for any dishes. I'd recommend checking with the restaurant directly about their kosher options!"
+    }
+  },
+  {
+    "id": "t05",
+    "type": "unsupported",
+    "question": "Is the branzino kosher?",
+    "rep": 1,
+    "system": {
+      "pass": false,
+      "fails": [
+        "missing 'staff'"
+      ],
+      "answer": "I don't have information about whether the Branzino al Forno is kosher. The menu doesn't list that detail. I'd recommend asking the restaurant directly to confirm!"
+    },
+    "baseline": {
+      "pass": false,
+      "fails": [
+        "missing 'staff'"
+      ],
+      "answer": "The menu doesn't list kosher certification for any of the dishes. I'd recommend checking with the restaurant directly about their kosher options!"
+    }
+  },
+  {
+    "id": "t05",
+    "type": "unsupported",
+    "question": "Is the branzino kosher?",
+    "rep": 2,
+    "system": {
+      "pass": false,
+      "fails": [
+        "missing 'staff'"
+      ],
+      "answer": "I can only help with questions about our menu: dishes, prices, diets and allergens."
+    },
+    "baseline": {
+      "pass": false,
+      "fails": [
+        "missing 'staff'"
+      ],
+      "answer": "I don't have information about whether the Branzino al Forno is kosher. The menu doesn't list that detail. I'd recommend asking the restaurant directly to confirm!"
+    }
+  },
+  {
+    "id": "t06",
+    "type": "no_match",
+    "question": "Do you have sushi?",
+    "rep": 0,
+    "system": {
+      "pass": true,
+      "fails": [],
+      "answer": "I'm sorry, the menu doesn't list sushi. We have Italian dishes like pizzas, risottos, and starters if you'd like to hear more about those!"
+    },
+    "baseline": {
+      "pass": true,
+      "fails": [],
+      "answer": "We don't have sushi on our menu. Is there anything else I can help you with?"
+    }
+  },
+  {
+    "id": "t06",
+    "type": "no_match",
+    "question": "Do you have sushi?",
+    "rep": 1,
+    "system": {
+      "pass": true,
+      "fails": [],
+      "answer": "The menu doesn't list sushi. Is there anything else I can help you with?"
+    },
+    "baseline": {
+      "pass": true,
+      "fails": [],
+      "answer": "Sorry, the menu doesn't list sushi. Would you like to know about any of our other dishes?"
+    }
+  },
+  {
+    "id": "t06",
+    "type": "no_match",
+    "question": "Do you have sushi?",
+    "rep": 2,
+    "system": {
+      "pass": true,
+      "fails": [],
+      "answer": "Sorry, the menu doesn't list sushi. Can I help you find something else?"
+    },
+    "baseline": {
+      "pass": true,
+      "fails": [],
+      "answer": "The menu doesn't list sushi. Would you like to know about any of our other dishes?"
+    }
+  },
+  {
+    "id": "t07",
+    "type": "off_topic",
+    "question": "What are your opening hours?",
+    "rep": 0,
+    "system": {
+      "pass": true,
+      "fails": [],
+      "answer": "I can only help with questions about our menu: dishes, prices, diets and allergens."
+    },
+    "baseline": {
+      "pass": true,
+      "fails": [],
+      "answer": "I don't have information about opening hours on the menu. You'd need to check the restaurant's website or contact them directly for that!"
+    }
+  },
+  {
+    "id": "t07",
+    "type": "off_topic",
+    "question": "What are your opening hours?",
+    "rep": 1,
+    "system": {
+      "pass": true,
+      "fails": [],
+      "answer": "I can only help with questions about our menu: dishes, prices, diets and allergens."
+    },
+    "baseline": {
+      "pass": true,
+      "fails": [],
+      "answer": "The menu doesn't list opening hours. You might want to check the restaurant's website or give us a call for that information!"
+    }
+  },
+  {
+    "id": "t07",
+    "type": "off_topic",
+    "question": "What are your opening hours?",
+    "rep": 2,
+    "system": {
+      "pass": true,
+      "fails": [],
+      "answer": "I can only help with questions about our menu: dishes, prices, diets and allergens."
+    },
+    "baseline": {
+      "pass": true,
+      "fails": [],
+      "answer": "I don't have information about opening hours on the menu. You'd need to check the restaurant's website or contact them directly for that!"
+    }
+  },
+  {
+    "id": "t08",
+    "type": "filter",
+    "question": "vegen starters pls",
+    "rep": 0,
+    "system": {
+      "pass": true,
+      "fails": [],
+      "answer": "Our vegan starter is:\n\n**Bruschetta al Pomodoro** - 7.50 EUR\nGrilled sourdough with tomatoes, basil and olive oil.\nAllergen: gluten"
+    },
+    "baseline": {
+      "pass": true,
+      "fails": [],
+      "answer": "We have one vegan starter:\n\n**Bruschetta al Pomodoro** - Grilled sourdough with tomatoes, basil and olive oil. €7.50"
+    }
+  },
+  {
+    "id": "t08",
+    "type": "filter",
+    "question": "vegen starters pls",
+    "rep": 1,
+    "system": {
+      "pass": true,
+      "fails": [],
+      "answer": "Our vegan starter is:\n\n**Bruschetta al Pomodoro** - 7.50 EUR\nGrilled sourdough with tomatoes, basil and olive oil.\nAllergen: gluten"
+    },
+    "baseline": {
+      "pass": true,
+      "fails": [],
+      "answer": "For vegan starters, we have:\n\n**Bruschetta al Pomodoro** - Grilled sourdough with tomatoes, basil and olive oil. €7.50\n*(Allergens: gluten)*"
+    }
+  },
+  {
+    "id": "t08",
+    "type": "filter",
+    "question": "vegen starters pls",
+    "rep": 2,
+    "system": {
+      "pass": true,
+      "fails": [],
+      "answer": "Here's our vegan starter:\n\n**Bruschetta al Pomodoro** - €7.50\nGrilled sourdough with tomatoes, basil and olive oil.\n*Allergen: gluten*"
+    },
+    "baseline": {
+      "pass": true,
+      "fails": [],
+      "answer": "Here's our vegan starter:\n\n**Bruschetta al Pomodoro** - Grilled sourdough with tomatoes, basil and olive oil. €7.50. Allergen: gluten."
+    }
+  }
+]
