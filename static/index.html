@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Menu Assistant</title>
+<style>
+  :root { --bg:#faf8f5; --card:#fff; --text:#222; --muted:#6b6b6b; --accent:#b5452a; --line:#e6e0d8; --user:#f3e3dc; }
+  @media (prefers-color-scheme: dark) {
+    :root { --bg:#181716; --card:#232120; --text:#ece8e3; --muted:#a39d96; --accent:#e07a5f; --line:#3a3633; --user:#3a2c27; }
+  }
+  * { box-sizing: border-box; }
+  body { margin:0; font-family: system-ui, sans-serif; background:var(--bg); color:var(--text); }
+  header { padding:16px 20px; border-bottom:1px solid var(--line); }
+  header h1 { margin:0; font-size:1.2rem; }
+  .notice { background:var(--card); border-left:4px solid var(--accent); margin:16px 20px 0; padding:10px 14px; font-size:.9rem; color:var(--muted); }
+  main { display:grid; grid-template-columns: 1.3fr 1fr; gap:20px; padding:20px; max-width:1100px; margin:0 auto; }
+  @media (max-width: 800px) { main { grid-template-columns: 1fr; } }
+  section { background:var(--card); border:1px solid var(--line); border-radius:10px; padding:14px; }
+  #log { height:380px; overflow-y:auto; display:flex; flex-direction:column; gap:10px; padding:4px; }
+  .msg { padding:10px 12px; border-radius:10px; max-width:88%; line-height:1.45; white-space:normal; word-wrap:break-word; }
+  .user { background:var(--user); align-self:flex-end; }
+  .bot { border:1px solid var(--line); align-self:flex-start; }
+  .chips { display:flex; flex-wrap:wrap; gap:8px; margin:10px 0; }
+  .chips button { font:inherit; font-size:.85rem; padding:6px 10px; border-radius:16px; border:1px solid var(--line); background:transparent; color:var(--text); cursor:pointer; }
+  .chips button:hover { border-color:var(--accent); }
+  form { display:flex; gap:8px; }
+  input { flex:1; font:inherit; padding:10px; border-radius:8px; border:1px solid var(--line); background:var(--bg); color:var(--text); }
+  #send { font:inherit; padding:10px 16px; border:0; border-radius:8px; background:var(--accent); color:#fff; cursor:pointer; }
+  #send:disabled { opacity:.5; cursor:default; }
+  #menu h3 { margin:14px 0 6px; font-size:1rem; color:var(--accent); }
+  #menu h3:first-child { margin-top:0; }
+  .dish { padding:6px 0; border-bottom:1px dashed var(--line); font-size:.9rem; }
+  .dish .top { display:flex; justify-content:space-between; gap:8px; font-weight:600; }
+  .dish .meta { color:var(--muted); font-size:.8rem; }
+  footer { text-align:center; color:var(--muted); font-size:.8rem; padding:0 20px 24px; }
+</style>
+</head>
+<body>
+<header><h1>Menu Assistant</h1></header>
+<div class="notice">
+  Demo project. Answers are generated from the menu data below and can be incomplete or wrong.
+  <strong>Always confirm allergies with the restaurant staff before ordering.</strong>
+</div>
+<main>
+  <section>
+    <div id="log"></div>
+    <div class="chips" id="chips"></div>
+    <form id="form">
+      <input id="q" maxlength="300" placeholder="Ask about dishes, prices, diets or allergens" autocomplete="off">
+      <button id="send" type="submit">Ask</button>
+    </form>
+  </section>
+  <section><div id="menu">Loading menu…</div></section>
+</main>
+<footer>Retrieval-augmented generation over a structured menu. Not a substitute for staff advice.</footer>
+
+<script>
+const $ = s => document.querySelector(s);
+const log = $("#log"), form = $("#form"), input = $("#q"), btn = $("#send");
+
+const esc = s => s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+const render = s => esc(s).replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>").replace(/\n/g, "<br>");
+
+function add(role, content, asHtml = false) {
+  const d = document.createElement("div");
+  d.className = "msg " + role;
+  if (asHtml) d.innerHTML = content; else d.textContent = content;
+  log.appendChild(d);
+  log.scrollTop = log.scrollHeight;
+  return d;
+}
+
+async function ask(q) {
+  add("user", q);
+  btn.disabled = true;
+  const wait = add("bot", "Thinking…");
+  try {
+    const r = await fetch("/ask", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ question: q })
+    });
+    const data = await r.json();
+    if (r.ok) wait.innerHTML = render(data.answer);
+    else wait.textContent = typeof data.detail === "string" ? data.detail : "Please check your question and try again.";
+  } catch {
+    wait.textContent = "Network error. Please try again.";
+  }
+  btn.disabled = false;
+  input.focus();
+  log.scrollTop = log.scrollHeight;
+}
+
+form.addEventListener("submit", e => {
+  e.preventDefault();
+  const q = input.value.trim();
+  if (!q || btn.disabled) return;
+  input.value = "";
+  ask(q);
+});
+
+["Vegan starter under 8 euros", "I'm allergic to nuts, what desserts can I have?", "Do you have halal options?"]
+  .forEach(t => {
+    const b = document.createElement("button");
+    b.type = "button"; b.textContent = t;
+    b.onclick = () => { if (!btn.disabled) ask(t); };
+    $("#chips").appendChild(b);
+  });
+
+function el(tag, cls, text) {
+  const e = document.createElement(tag);
+  if (cls) e.className = cls;
+  if (text !== undefined) e.textContent = text;
+  return e;
+}
+
+async function loadMenu() {
+  const box = $("#menu");
+  try {
+    const { dishes } = await (await fetch("/menu")).json();
+    box.textContent = "";
+    const by = {};
+    dishes.forEach(d => (by[d.category] ||= []).push(d));
+    for (const [cat, items] of Object.entries(by)) {
+      box.appendChild(el("h3", "", cat));
+      items.forEach(d => {
+        const row = el("div", "dish");
+        const top = el("div", "top");
+        top.appendChild(el("span", "", d.name));
+        top.appendChild(el("span", "", d.price_eur != null ? d.price_eur.toFixed(2) + " EUR" : "price n/a"));
+        row.appendChild(top);
+        row.appendChild(el("div", "", d.description));
+        const tags = d.dietary_tags.length ? d.dietary_tags.join(", ") + " · " : "";
+        const all = d.allergens_stated ? "allergens: " + (d.allergens.join(", ") || "none listed") : "allergens: not provided";
+        row.appendChild(el("div", "meta", tags + all));
+        box.appendChild(row);
+      });
+    }
+  } catch {
+    box.textContent = "Could not load the menu.";
+  }
+}
+
+add("bot", "Hi! Ask me about the dishes, prices, dietary options or allergens.");
+loadMenu();
+</script>
+</body>
+</html>

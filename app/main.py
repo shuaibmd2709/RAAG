@@ -16,6 +16,8 @@ from app.parser import parse_menu
 from app.ratelimit import RateLimiter
 from app.schema import Menu
 
+from fastapi.responses import FileResponse
+
 log = logging.getLogger("menu-bot")
 limiter = RateLimiter(RATE_LIMIT_PER_MIN, DAILY_ASK_CAP)
 _replace_lock = threading.Lock()
@@ -39,6 +41,12 @@ async def lifespan(_: FastAPI):
 
 app = FastAPI(title="Restaurant Menu Assistant", lifespan=lifespan)
 
+STATIC_DIR = Path(__file__).resolve().parent.parent / "static"
+
+
+@app.get("/", include_in_schema=False)
+def index():
+    return FileResponse(STATIC_DIR / "index.html")
 
 class AskRequest(BaseModel):
     question: str = Field(min_length=1, max_length=300)

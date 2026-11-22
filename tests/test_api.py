@@ -38,3 +38,7 @@ def test_upload_rejects_non_pdf(monkeypatch):
     monkeypatch.setattr(main, "ADMIN_KEY", "secret")
     r = client.post("/upload", files={"file": ("m.pdf", b"hello")}, headers={"X-Admin-Key": "secret"})
     assert r.status_code == 415
+
+def test_index_page_served():
+    r = client.get("/")
+    assert r.status_code == 200 and "text/html" in r.headers["content-type"]
