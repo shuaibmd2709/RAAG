@@ -2,10 +2,11 @@ import chromadb
 from app import embedder
 from app.config import CHROMA_DIR
 from app.schema import Dish, Menu
+from functools import lru_cache
 
 COLLECTION = "menu"
 
-
+@lru_cache(maxsize=4)
 def _client(path=None):
     return chromadb.PersistentClient(path=str(path or CHROMA_DIR))
 
@@ -65,3 +66,9 @@ def vocab(client=None) -> dict:
         "categories": sorted({d.category for d in dishes}),
         "tags": sorted({t for d in dishes for t in d.dietary_tags}),
     }
+
+def all_dishes(client=None) -> list[Dish]:
+    client = client or _client()
+    col = client.get_collection(COLLECTION, embedding_function=None)
+    dishes = [Dish.model_validate_json(m["dish_json"]) for m in col.get(include=["metadatas"])["metadatas"]]
+    return sorted(dishes, key=lambda d: d.id)
