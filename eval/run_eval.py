@@ -38,7 +38,7 @@ def run_one(fn, question: str, case: dict) -> dict:
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("--split", default="dev", choices=["dev", "test", "all"])
+    ap.add_argument("--split", default="dev", choices=["dev", "test", "post", "all"])
     ap.add_argument("--repeats", type=int, default=1)
     ap.add_argument("--no-baseline", action="store_true")
     args = ap.parse_args()

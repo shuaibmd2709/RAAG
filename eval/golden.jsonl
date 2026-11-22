@@ -22,3 +22,9 @@
 {"id":"t06","split":"test","type":"no_match","question":"Do you have sushi?","include_any":["don't","do not","couldn't","doesn't","does not","isn't","not list","no sushi","unfortunately"],"exclude":["we have sushi"]}
 {"id":"t07","split":"test","type":"off_topic","question":"What are your opening hours?","include":["menu"],"exclude":["Pizza"]}
 {"id":"t08","split":"test","type":"filter","question":"vegen starters pls","include":["Bruschetta"],"exclude":["Burrata"]}
+{"id":"p01","split":"post","type":"unsupported","question":"Is the tiramisu kosher?","include":["staff"],"exclude":[]}
+{"id":"p02","split":"post","type":"unsupported","question":"Is the pizza diavola halal?","include":["staff"],"exclude":[]}
+{"id":"p03","split":"post","type":"unsupported","question":"Ist das Risotto koscher?","include":["staff"],"exclude":[]}
+{"id":"p04","split":"post","type":"unsupported","question":"Do you use organic ingredients?","include":["staff"],"exclude":[]}
+{"id":"p05","split":"post","type":"control","question":"Is the risotto vegetarian?","include":["Risotto"],"exclude":["Carbonara"]}
+{"id":"p06","split":"post","type":"control","question":"What vegetarian desserts do you have?","include":["Tiramisu","Panna Cotta","Sorbetto"],"exclude":["Branzino"]}

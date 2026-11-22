@@ -3,6 +3,8 @@ from app.query_plan import QueryPlan
 from app.retrieve import Retrieval, cut_by_margin
 from app.schema import Dish
 from app.generate import SAFETY_CLAIM
+from app.generate import _dish_line
+
 
 def test_prices_in_handles_formats():
     assert prices_in("costs €7.50 or 8,00 EUR and EUR 9") == {7.5, 8.0, 9.0}
@@ -29,3 +31,8 @@ def test_cut_by_margin_keeps_only_close_hits():
 def test_safety_claim_detected():
     assert SAFETY_CLAIM.search("All three desserts are safe for nut allergies")
     assert not SAFETY_CLAIM.search("No nuts are listed for these desserts")
+
+
+def test_vegan_dish_is_described_as_vegetarian_too():
+    d = Dish(id="a", name="A", category="Desserts", description="x", dietary_tags=["vegan"])
+    assert "also vegetarian" in _dish_line(d)

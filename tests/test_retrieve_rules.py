@@ -1,6 +1,7 @@
 from app.query_plan import QueryPlan
 from app.retrieve import apply_rules, build_where, normalize_plan
 from app.schema import Dish
+from app.retrieve import labels_in_question
 
 VOCAB = {"categories": ["Desserts", "Starters"], "tags": ["vegan", "vegetarian"]}
 
@@ -36,3 +37,10 @@ def test_unsupported_tag_and_category_casing():
     plan, unsupported = normalize_plan(plan, VOCAB)
     assert plan.category == "Starters" and plan.require_tags == ["vegan"]
     assert unsupported == ["halal"]
+
+
+def test_labels_in_question():
+    v = {"tags": ["vegan"]}
+    assert labels_in_question("Is the branzino kosher?", v) == ["kosher"]
+    assert labels_in_question("Is the pizza halal", {"tags": ["halal"]}) == []
+    assert labels_in_question("What's in the risotto?", v) == []

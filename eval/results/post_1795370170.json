@@ -1,0 +1,214 @@
+[
+  {
+    "id": "p01",
+    "type": "unsupported",
+    "question": "Is the tiramisu kosher?",
+    "rep": 0,
+    "system": {
+      "pass": true,
+      "fails": [],
+      "answer": "Our menu doesn't mark dishes as kosher, so I can't confirm that. Please ask our staff."
+    }
+  },
+  {
+    "id": "p01",
+    "type": "unsupported",
+    "question": "Is the tiramisu kosher?",
+    "rep": 1,
+    "system": {
+      "pass": true,
+      "fails": [],
+      "answer": "Our menu doesn't mark dishes as kosher, so I can't confirm that. Please ask our staff."
+    }
+  },
+  {
+    "id": "p01",
+    "type": "unsupported",
+    "question": "Is the tiramisu kosher?",
+    "rep": 2,
+    "system": {
+      "pass": true,
+      "fails": [],
+      "answer": "Our menu doesn't mark dishes as kosher, so I can't confirm that. Please ask our staff."
+    }
+  },
+  {
+    "id": "p02",
+    "type": "unsupported",
+    "question": "Is the pizza diavola halal?",
+    "rep": 0,
+    "system": {
+      "pass": true,
+      "fails": [],
+      "answer": "Our menu doesn't mark dishes as halal, so I can't confirm that. Please ask our staff."
+    }
+  },
+  {
+    "id": "p02",
+    "type": "unsupported",
+    "question": "Is the pizza diavola halal?",
+    "rep": 1,
+    "system": {
+      "pass": true,
+      "fails": [],
+      "answer": "Our menu doesn't mark dishes as halal, so I can't confirm that. Please ask our staff."
+    }
+  },
+  {
+    "id": "p02",
+    "type": "unsupported",
+    "question": "Is the pizza diavola halal?",
+    "rep": 2,
+    "system": {
+      "pass": true,
+      "fails": [],
+      "answer": "Our menu doesn't mark dishes as halal, so I can't confirm that. Please ask our staff."
+    }
+  },
+  {
+    "id": "p03",
+    "type": "unsupported",
+    "question": "Ist das Risotto koscher?",
+    "rep": 0,
+    "system": {
+      "pass": true,
+      "fails": [],
+      "answer": "Our menu doesn't mark dishes as koscher, so I can't confirm that. Please ask our staff."
+    }
+  },
+  {
+    "id": "p03",
+    "type": "unsupported",
+    "question": "Ist das Risotto koscher?",
+    "rep": 1,
+    "system": {
+      "pass": false,
+      "fails": [
+        "missing 'staff'"
+      ],
+      "answer": "I can only help with questions about our menu: dishes, prices, diets and allergens."
+    }
+  },
+  {
+    "id": "p03",
+    "type": "unsupported",
+    "question": "Ist das Risotto koscher?",
+    "rep": 2,
+    "system": {
+      "pass": false,
+      "fails": [
+        "missing 'staff'"
+      ],
+      "answer": "I can only help with questions about our menu: dishes, prices, diets and allergens."
+    }
+  },
+  {
+    "id": "p04",
+    "type": "unsupported",
+    "question": "Do you use organic ingredients?",
+    "rep": 0,
+    "system": {
+      "pass": false,
+      "fails": [
+        "missing 'staff'"
+      ],
+      "answer": "I can only help with questions about our menu: dishes, prices, diets and allergens."
+    }
+  },
+  {
+    "id": "p04",
+    "type": "unsupported",
+    "question": "Do you use organic ingredients?",
+    "rep": 1,
+    "system": {
+      "pass": false,
+      "fails": [
+        "missing 'staff'"
+      ],
+      "answer": "I can only help with questions about our menu: dishes, prices, diets and allergens."
+    }
+  },
+  {
+    "id": "p04",
+    "type": "unsupported",
+    "question": "Do you use organic ingredients?",
+    "rep": 2,
+    "system": {
+      "pass": false,
+      "fails": [
+        "missing 'staff'"
+      ],
+      "answer": "I can only help with questions about our menu: dishes, prices, diets and allergens."
+    }
+  },
+  {
+    "id": "p05",
+    "type": "control",
+    "question": "Is the risotto vegetarian?",
+    "rep": 0,
+    "system": {
+      "pass": true,
+      "fails": [],
+      "answer": "Yes! The Risotto ai Funghi is **vegetarian**. It's made with Arborio rice, porcini mushrooms, white wine and parmesan, and is priced at 15.00 EUR."
+    }
+  },
+  {
+    "id": "p05",
+    "type": "control",
+    "question": "Is the risotto vegetarian?",
+    "rep": 1,
+    "system": {
+      "pass": true,
+      "fails": [],
+      "answer": "Yes! The **Risotto ai Funghi** is vegetarian. It's arborio rice with porcini mushrooms, white wine and parmesan, priced at 15.00 EUR. \n\nPlease note it does contain dairy (parmesan)."
+    }
+  },
+  {
+    "id": "p05",
+    "type": "control",
+    "question": "Is the risotto vegetarian?",
+    "rep": 2,
+    "system": {
+      "pass": true,
+      "fails": [],
+      "answer": "Yes! The **Risotto ai Funghi** is vegetarian. It's arborio rice with porcini mushrooms, white wine and parmesan, priced at 15.00 EUR. \n\nPlease note it does contain dairy (parmesan)."
+    }
+  },
+  {
+    "id": "p06",
+    "type": "control",
+    "question": "What vegetarian desserts do you have?",
+    "rep": 0,
+    "system": {
+      "pass": false,
+      "fails": [
+        "missing 'Sorbetto'"
+      ],
+      "answer": "We have two vegetarian desserts:\n\n1. **Tiramisu** - Mascarpone cream, espresso-soaked savoiardi and cocoa. €6.50\n   Allergens: gluten, egg, dairy\n\n2. **Panna Cotta** - Vanilla cream with a berry compote. €6.00\n   Allergens: dairy"
+    }
+  },
+  {
+    "id": "p06",
+    "type": "control",
+    "question": "What vegetarian desserts do you have?",
+    "rep": 1,
+    "system": {
+      "pass": true,
+      "fails": [],
+      "answer": "We have three vegetarian desserts:\n\n- **Tiramisu** - Mascarpone cream, espresso-soaked savoiardi and cocoa. €6.50. Allergens: gluten, egg, dairy.\n- **Panna Cotta** - Vanilla cream with a berry compote. €6.00. Allergens: dairy.\n- **Sorbetto al Limone** - Lemon sorbet. €5.00. No allergens listed."
+    }
+  },
+  {
+    "id": "p06",
+    "type": "control",
+    "question": "What vegetarian desserts do you have?",
+    "rep": 2,
+    "system": {
+      "pass": false,
+      "fails": [
+        "missing 'Sorbetto'"
+      ],
+      "answer": "We have two vegetarian desserts:\n\n- **Tiramisu** (6.50 EUR) - Mascarpone cream, espresso-soaked savoiardi and cocoa. Allergens: gluten, egg, dairy.\n- **Panna Cotta** (6.00 EUR) - Vanilla cream with a berry compote. Allergens: dairy."
+    }
+  }
+]

@@ -34,9 +34,14 @@ def _unknown_note(r: Retrieval) -> str:
     what = ", ".join(r.plan.exclude_allergens)
     return f"I can't confirm {what} information for: {names}. Please ask our staff about these."
 
+def _dish_line(d) -> str:
+    line = d.to_text()
+    if "vegan" in d.dietary_tags and "vegetarian" not in d.dietary_tags:
+        line += " (Vegan dishes are also vegetarian.)"
+    return f"- {line}"
 
 def _llm_answer(question: str, r: Retrieval) -> str:
-    context = "\n".join(f"- {d.to_text()}" for d in r.matches)
+    context = "\n".join(_dish_line(d) for d in r.matches)
     client = Anthropic(api_key=ANTHROPIC_API_KEY)
     resp = client.messages.create(
         model=GENERATOR_MODEL,

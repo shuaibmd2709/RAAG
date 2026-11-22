@@ -4,6 +4,9 @@ from app import store
 from app.query_plan import QueryPlan, understand
 from app.schema import Dish
 
+import re
+
+UNSUPPORTED_LABELS = ["halal", "kosher", "koscher", "keto", "paleo", "organic"]
 
 @dataclass
 class Retrieval:
@@ -76,12 +79,19 @@ def _semantic_only(plan: QueryPlan) -> bool:
                 or plan.require_tags or plan.exclude_allergens)
 
 
+def labels_in_question(question: str, vocab: dict) -> list[str]:
+    q = question.lower()
+    return [l for l in UNSUPPORTED_LABELS
+            if re.search(rf"\b{l}\b", q) and l not in vocab["tags"]]
+
 def retrieve(question: str, k: int = 6, client=None) -> Retrieval:
     v = store.vocab(client)
     plan = understand(question, v)
-    if not plan.is_menu_question:
+    forced = labels_in_question(question, v)
+    if not plan.is_menu_question and not forced:
         return Retrieval(plan, off_topic=True)
     plan, unsupported = normalize_plan(plan, v)
+    unsupported = sorted(set(unsupported) | set(forced))
     if unsupported:
         return Retrieval(plan, unsupported=unsupported)   # fail closed
     hits = store.search(plan.semantic_query, k=50, where=build_where(plan), client=client)
