@@ -10,3 +10,5 @@ EMBED_MODEL = os.getenv("EMBED_MODEL", "sentence-transformers/all-MiniLM-L6-v2")
 CHROMA_DIR = os.getenv("CHROMA_DIR", "data/chroma")
 
 PLANNER_MODEL = os.getenv("PLANNER_MODEL", PARSER_MODEL)
+
+GENERATOR_MODEL = os.getenv("GENERATOR_MODEL", PARSER_MODEL)

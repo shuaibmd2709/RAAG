@@ -11,6 +11,7 @@ class Retrieval:
     matches: list[Dish] = field(default_factory=list)
     unknown_allergen: list[Dish] = field(default_factory=list)
     unsupported: list[str] = field(default_factory=list)
+    off_topic: bool = False
 
 
 def normalize_plan(plan: QueryPlan, vocab: dict) -> tuple[QueryPlan, list[str]]:
@@ -77,7 +78,10 @@ def _semantic_only(plan: QueryPlan) -> bool:
 
 def retrieve(question: str, k: int = 6, client=None) -> Retrieval:
     v = store.vocab(client)
-    plan, unsupported = normalize_plan(understand(question, v), v)
+    plan = understand(question, v)
+    if not plan.is_menu_question:
+        return Retrieval(plan, off_topic=True)
+    plan, unsupported = normalize_plan(plan, v)
     if unsupported:
         return Retrieval(plan, unsupported=unsupported)   # fail closed
     hits = store.search(plan.semantic_query, k=50, where=build_where(plan), client=client)

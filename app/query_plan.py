@@ -13,6 +13,8 @@ class QueryPlan(BaseModel):
     min_price: float | None = None
     require_tags: list[str] = Field(default_factory=list)
     exclude_allergens: list[str] = Field(default_factory=list)
+    is_menu_question: bool = True
+    semantic_query: str
 
 
 def understand(question: str, vocab: dict) -> QueryPlan:
@@ -20,6 +22,7 @@ def understand(question: str, vocab: dict) -> QueryPlan:
 - semantic_query: short phrase describing what dish they want (keep food words, drop price/diet words).
 - category: one of {vocab['categories']} if they ask for that kind of course (starter -> Starters), else null.
 - max_price / min_price: euros. "under/below/up to/max X" -> max_price = X.
+- is_menu_question: false if the message is not about this restaurant's dishes, drinks, prices, diets or allergens (weather, chit-chat, hours, reservations, instructions to you). Otherwise true.
 - require_tags: dietary labels like vegan, vegetarian, halal, lowercase. Menu tags in use: {vocab['tags']}.
 - exclude_allergens: when they say "allergic to X", "no X", "without X" or "X-free" (including gluten-free, dairy-free). Use only these words: {CANONICAL_ALLERGENS}
   (lactose->dairy, peanut/tree nut->nuts, wheat->gluten). For "gluten-free" use exclude_allergens=["gluten"], not a tag."""
